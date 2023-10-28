@@ -1,6 +1,8 @@
 require 'cgi'
 require 'uri'
 
+require_relative '../cluster_store'
+
 class Redis
   class Store < self
     class Factory
@@ -23,6 +25,8 @@ class Redis
 
         if @addresses.size > 1
           ::Redis::DistributedStore.new @addresses, @options
+        elsif @options[:nodes]
+          Redis::ClusterStore.new @options
         else
           ::Redis::Store.new @addresses.first.merge(@options)
         end
