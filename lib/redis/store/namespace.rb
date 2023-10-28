@@ -67,6 +67,7 @@ class Redis
       end
 
       def mget(*keys, &blk)
+        puts 'cp2'
         options = (keys.pop if keys.last.is_a? Hash) || {}
         if keys.any?
           # Serialization gets extended before Namespace does, so we need to pass options further

@@ -1,9 +1,11 @@
+require 'pry'
 class Redis
   class Store < self
     module Ttl
       def set(key, value, options = nil)
         if ttl = expires_in(options)
-          setex(key, ttl.to_i, value, :raw => true)
+          binding.pry
+          setex(key, ttl.to_i, value) #:raw => true)
         else
           super(key, value, options)
         end
@@ -39,7 +41,7 @@ class Redis
         end
 
         def with_multi_or_pipelined(options, &block)
-          return pipelined(&block) if options.key?(:cluster) || options[:avoid_multi_commands]
+          return pipelined(&block) if options.key?(:nodes) || options[:avoid_multi_commands]
           multi(&block)
         end
     end
