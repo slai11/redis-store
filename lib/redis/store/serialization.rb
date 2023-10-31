@@ -2,19 +2,19 @@ class Redis
   class Store < self
     module Serialization
       def set(key, value, options = nil)
-        _marshal(value, options) { |v| super encode(key), encode(v), *options }
+        _marshal(value, options) { |v| super encode(key), encode(v), options }
       end
 
       def setnx(key, value, options = nil)
-        _marshal(value, options) { |v| super encode(key), encode(v), *options }
+        _marshal(value, options) { |v| super encode(key), encode(v), options }
       end
 
       def setex(key, expiry, value, options = nil)
-        _marshal(value, options) { |v| super encode(key), expiry, encode(v), *options }
+        _marshal(value, options) { |v| super encode(key), expiry, encode(v), options }
       end
 
       def get(key, options = nil)
-        _unmarshal super(key), *options
+        _unmarshal super(key), options
       end
 
       def mget(*keys, &blk)

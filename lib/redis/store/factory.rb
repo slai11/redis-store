@@ -26,6 +26,7 @@ class Redis
         if @addresses.size > 1
           ::Redis::DistributedStore.new @addresses, @options
         elsif @options[:nodes]
+          # only affects cluster config in redis >= 5
           Redis::ClusterStore.new @options
         else
           ::Redis::Store.new @addresses.first.merge(@options)

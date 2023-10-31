@@ -27,7 +27,7 @@ class Redis
     end
 
     def inspect
-      "Redis::ClusterStore TODOTODO"
+      "Redis::ClusterStore #{}"
     end
 
     private

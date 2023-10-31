@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'redis', '>= 4', '< 6'
 
+  s.add_runtime_dependency 'redis-clustering'
+
   s.add_development_dependency 'rake',     '>= 12.3.3'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'mocha',    '~> 2.1.0'
